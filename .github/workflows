@@ -1,0 +1,32 @@
+name: Test OIDC
+
+on:
+  workflow_dispatch:
+
+env:
+  PROJECT_ID: org-dev-automation
+  PROJECT_NO: 1085146850262
+  
+jobs:
+  authenticate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+    steps:
+      - id: 'auth'
+        name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v0.4.0'
+        with:
+          workload_identity_provider: 'projects/1085146850262/locations/global/workloadIdentityPools/org-bootstrap/providers/org-bootstrap-gh-provider'
+          service_account: 'org-dev-bootstrap-1@org-dev-automation.iam.gserviceaccount.com'
+          
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v1'
+        with:
+          version: '>= 363.0.0'
+          
+      - name: get SA list
+        run: |
+          gcloud iam service-accounts list
+
