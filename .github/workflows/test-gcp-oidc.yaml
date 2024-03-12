@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
 
 env:
-  PROJECT_ID: org-dev-automation
-  PROJECT_NO: 1085146850262
+  PROJECT_ID: cust-b-dev-bb-project-x1
+  PROJECT_NO: 545072476622
   
 jobs:
   authenticate:
@@ -18,8 +18,8 @@ jobs:
         name: 'Authenticate to Google Cloud'
         uses: 'google-github-actions/auth@v0.4.0'
         with:
-          workload_identity_provider: 'projects/1085146850262/locations/global/workloadIdentityPools/org-bootstrap/providers/org-bootstrap-gh-provider'
-          service_account: 'org-dev-bootstrap-1@org-dev-automation.iam.gserviceaccount.com'
+          workload_identity_provider: 'projects/545072476622/locations/global/workloadIdentityPools/cust-b-dev-bb-project-x1-idn-pl/providers/gh-provider'
+          service_account: 'bb-project-x1-cicd@cust-b-dev-bb-project-x1.iam.gserviceaccount.com'
           
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v1'
